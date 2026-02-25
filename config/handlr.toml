@@ -1,4 +1,4 @@
 enable_selector = true
-selector = "wofi"
+selector = "wofi --dmenu -p 'Run:'"
 term_exec_args = '-e'
 expand_wildcards = true
