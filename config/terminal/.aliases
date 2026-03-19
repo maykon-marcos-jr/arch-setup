@@ -1,4 +1,5 @@
-alias list='cat ~/.aliases'
+alias list='bat --color=always ~/.aliases'
+alias binds='bat --color=always ~/arch-setup/config/hyprland/conf/binds.conf'
 alias upd='paru -Suy --noconfirm && rustup -q update && sudo pacman -Qdtq | sudo xargs -r pacman -Rns --noconfirm'
 alias get-music='yt-dlp --format bestaudio --extract-audio --audio-format mp3 --audio-quality 192K --embeded-thumbnail --output "%(title)s.%(ext)s"'
 alias fix-blue="pactl set-card-profile $(pactl list cards | grep 'Name: bluez' | awk '{print $2}') a2dp-sink"
