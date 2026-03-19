@@ -11,8 +11,8 @@ adaptive_interval = 1    # Adaptive interval base for smooth transitions (1-1000
 #[Time-based config]
 night_temp = 2000        # Color temperature during night (1000-20000) Kelvin
 day_temp = 6500          # Color temperature during day (1000-20000) Kelvin
-night_gamma = 70         # Gamma percentage for night (10-200%)
-day_gamma = 120          # Gamma percentage for day (10-200%)
+night_gamma = 50         # Gamma percentage for night (10-200%)
+day_gamma = 150          # Gamma percentage for day (10-200%)
 update_interval = 30     # Update frequency during transitions in seconds (10-300)
 
 #[Static config]
@@ -21,7 +21,7 @@ static_gamma = 100       # Gamma percentage for static mode (10-200%)
 
 #[Manual transitions]
 sunset = "18:00:00"      # Time for manual sunset calculations (HH:MM:SS)
-sunrise = "06:00:00"     # Time for manual sunrise calculations (HH:MM:SS)
+sunrise = "05:00:00"     # Time for manual sunrise calculations (HH:MM:SS)
 transition_duration = 45 # Transition duration in minutes (5-120)
 
 #[Geolocation]
