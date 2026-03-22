@@ -1,4 +1,3 @@
-ags-hyprpanel-git
 aquamarine
 brightnessctl
 hyprcursor
@@ -18,6 +17,7 @@ playerctl
 sunsetr
 swaync
 sysc-greet-hyprland
+waybar
 wl-kbptr
 wlrctl
 wofi

@@ -1,93 +1,200 @@
 // -*- mode: jsonc -*-
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    //"height": 30, // Waybar height (to be removed for auto height)
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 40, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
+    "output": ["*"],
+    "mode": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "reload_style_on_change": true,
     // Choose the order of the modules
-    "modules-left": [
+    "modules-left": ["group/left"],
+    "modules-center": ["group/center"],
+    "modules-right": ["group/right"],
+    "group/left": {
+      "orientation": "inherit",
+      "modules": [
+        "custom/apps",
         "hyprland/workspaces",
-        "hyprland/window"
-        // "hyprland/mode",
-        // "hyprland/scratchpad",
-        // "custom/media"
-    ],
-    "modules-center": [
-        // "mpd",
-        "clock"
-    ],
-    "modules-right": [
+        "hyprland/window",
+        "mpris"
+        ]
+    },
+    "group/center": {
+      "orientation": "inherit",
+      "modules": [
+        "clock",
+        "custom/notification"
+    ]
+    },
+    "group/right": {
+      "orientation": "inherit",
+      "modules": [
         "tray",
-        "custom/gmail",
+        // "custom/gmail",
+        "wireplumber",
         "pulseaudio",
-        "custom/bluetooth",
-        "power-profiles-daemon",
-        "keyboard-state",
+        "bluetooth",
         "network",
-        "battery"
-        // "idle_inhibitor",
-        // "cpu",
-        // "memory",
-        // "temperature",
-        // "backlight",
-        // "hyprland/language",
-        // "battery#bat2",
-        // "custom/power"
-    ],
-    "custom/gmail": {
-        "exec": "gmail-tray.py --once | grep '{'",
-        "interval": 30,
-        "return-type": "json",
-        "format": " @ {} "
+        "battery",
+        "power-profiles-daemon"
+    ]
+    },
+    "custom/apps": {
+        "format": "⌕",
+        "tooltip-format": "Search Apps ...",
+        "on-click": "wofi"
     },
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "warp-on-scroll": false,
-        "format": " {id}",
+        "format": "{id}",
         "format-icons": {
             "urgent": "",
             "active": "",
             "default": ""
         }
     },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon}  {format_source}",
-        "format-bluetooth": " {volume}%  {icon}  {format_source}",
-        "format-bluetooth-muted": "   {format_source}",
-        "format-muted": "  {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["","",""]
+    "hyprland/window": {
+        "format": "{title}",
+        // truncate title to the last 25 chars, can be set to 0 for no truncation
+        "max-length": 25,
+        "tooltip-format": "{title}",
+        // prevent text font size from being too big and increasing waybar height, can be set to 0 for no limit
+        "offscreen-css": true,
+        "offscreen-css-text": "(inactive)",
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "    $1",
+            "(.*@.*~)": ">  [$1]",
+            "(.*) - Brave": "  $1",
+            "(.*) - Visual Studio Code": "Code: $1"
         },
-        "on-click": "ghostty -e wiremix",
-        "on-click-right": "ghostty -e bluetui && pactl set-card-profile $(pactl list cards | rg 'Name: bluez' | awk '{print $2}') a2dp-sink"
+        "separate-outputs": true
     },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10,
-        "icons": {
-            "gmail-tray": "gmail-tray"
+    "mpris": {
+        "format": "{player_icon} <i>{dynamic}</i>",
+        "format-paused": "{status_icon} ",
+        "on-click": "playerctl play-pause",
+        "max-length": 20,
+        "tooltip": true,
+        "tooltip-format": "{player_icon}   Left click: Play/Pause    {status_icon}\n{dynamic}",
+        "player-icons": {
+            "chromium": "",
+            "default": "",
+            "firefox": "",
+            "kdeconnect": "",
+            "mopidy": "",
+            "mpv": "󰐹",
+            "spotify": "",
+            "vlc": "󰕼"
+        },
+        "status-icons": {
+            "paused": "▐▐",
+            "playing": "▶",
+            "stopped": "◼"
         }
     },
     "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": " {:%d/%m   %H:%M}",
-        "format-alt": " {:%a, %d %b  :%H:%M}",
-        "on-click": "swaync-client -t -sw"
+        "format": "  {:%d/%m     %H:%M}",
+        "format-alt": "  {:%a, %d %b     %H:%M}",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "week-pos": "right",
+            "on-scroll": "1",
+            "format": {
+                "months":     "<span color='#ffead3'><b>{}</b></span>",
+                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks":      "<span color='#99ffdd'><b>{}</b></span>",
+                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_down",
+            "on-scroll-down": "shift_up"
+        },
+        "tooltip-format": "<tt>{calendar}</tt>"
     },
-    "battery#bat2": {
-        "bat": "BAT2"
+    // SwayNC
+    "custom/notification": {
+        "tooltip": true,
+        "tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb",
+        "format": "{} {icon} ",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "sleep 0.1 && swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 15
+    },
+    "custom/gmail": {
+        "exec": "gmail-tray --once | grep '{'",
+        "interval": 30,
+        "return-type": "json",
+        "format": " @ {} "
+    },
+    "wireplumber": {
+        "format": "{icon}   {volume}%",
+        "format-muted": "",
+        "format-icons": [
+            "", "", "󰕾", ""
+        ],
+        // toggles output on left click, opens wiremix on right click, can be set to "none" for no action
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "ghostty -e wiremix"
+    },
+    "pulseaudio": {
+        "format": "{format_source}",
+        "format-source": "  {volume}%",
+        "format-source-muted": "",
+        // toggles source on left click, opens wiremix on right click, can be set to "none" for no action
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-click-right": "ghostty -e wiremix"
+    },
+    // Bluetooth
+    "bluetooth": {
+        "format": "  {status}",
+        "interval": 30,
+        "tooltip-format-connected": "Connected devices: {num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t| Battery life: {device_battery_percentage}%",
+        "format-no-controller": "",
+        // verify if bluetooth is on, if not enable it and show the module, if it is on, just show the module
+        "on-click": "if (bluetoothctl show | grep 'Powered: yes') then { bluetoothctl power off; } else { bluetoothctl power on; } fi",        "on-click-right": "ghostty -e bluetui"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "max-length": 25,
+        "format": "{ifname}",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "format-wifi": "{icon}  ({signalStrength}%)",
+        "format-ethernet": " {ifname}",
+        "format-disconnected": "⚠",
+        "tooltip-format": "{ifname} / {gwaddr}",
+        "on-click-right": "nm-connection-editor",
+        "format-icons": [
+            "󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
+        ]
     },
     "battery": {
         "states": {
@@ -96,12 +203,14 @@
             "critical": 15
         },
         "format": "{capacity}% {icon}",
-        "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
+        "format-full": "{icon}",
         "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
+        "tooltip-format": "Battery: {capacity}%\nPower: {power} Watts\nHealth: {health}%",
+        "events": {
+            "on-discharging-warning": "notify-send -u normal 'Low Battery'",
+            "on-discharging-critical": "notify-send -u critical 'Very Low Battery'",
+            "on-charging-100": "notify-send -u normal 'Battery Full!'"
+        },
         "format-icons": [
             "",
             "",
@@ -115,133 +224,9 @@
         "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
         "tooltip": true,
         "format-icons": {
-            "default": "",
             "performance": "",
             "balanced": "",
             "power-saver": ""
         }
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "({signalStrength}%) ",
-        "format-ethernet": "{ifname} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click": "nm-connection-editor"
-    },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
-    "hyprland/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "hyprland/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": [
-            "",
-            ""
-        ],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 5,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": [
-            "",
-            "",
-            ""
-        ]
-    },
-    "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
-    },
-    "custom/media": {
-        "format": "{icon} {text}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    },
-    "custom/power": {
-        "format": "⏻",
-        "tooltip": false
-        // "menu": "on-click",
-        // "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-        // "menu-actions": {
-        //     "shutdown": "shutdown",
-        //     "reboot": "reboot",
-        //     "suspend": "systemctl suspend",
-        //     "hibernate": "systemctl hibernate"
-        // }
     }
 }
