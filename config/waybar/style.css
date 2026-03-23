@@ -126,8 +126,8 @@ label:focus {
 }
 
 #workspaces button.urgent {
-    background-color: #ff0000;
-    color: #ff9900;
+    background-color: #00ff2f;
+    color: #000000;
 }
 
 #window {
@@ -192,7 +192,7 @@ label:focus {
 }
 
 #wireplumber {
-    color: #2980b9;
+    color: #89b4fa;
     padding: 0 10px;
     background-color: #11111b;
     border: 2px solid #313244;
@@ -220,7 +220,7 @@ label:focus {
 }
 
 #network {
-    color: #2980b9;
+    color: #2ecc71;
     padding: 0 10px;
     background-color: #11111b;
     border: 2px solid #313244;
