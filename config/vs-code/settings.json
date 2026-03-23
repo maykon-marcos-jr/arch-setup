@@ -5,7 +5,6 @@
     "git.confirmSync": false,
     "git.autofetch": true,
     "terminal.external.linuxExec": "ghostty",
-    "terminal.integrated.defaultProfile.linux": "bash",
     // To skip committing sensitive data, the following line must be altered separately
     // For every commit,
     //      remove the token below
@@ -42,12 +41,20 @@
     "security.workspace.trust.startupPrompt": "never",
     "terminal.integrated.profiles.linux": {
         "bash": {
-            "path": "/usr/bin/bash"
+            "path": "/usr/bin/bash",
+            "icon": "terminal-bash",
+            "args": [
+                "--login"
+            ]
         }
     },
+    "terminal.integrated.defaultProfile.linux": "bash",
     "terminal.integrated.enableImages": true,
     "terminal.integrated.gpuAcceleration": "on",
     "terminal.integrated.hideOnStartup": "whenEmpty",
     "terminal.integrated.suggest.insertTrailingSpace": true,
-    "workbench.secondarySideBar.defaultVisibility": "hidden"
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "terminal.integrated.cursorStyleInactive": "block",
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.cursorWidth": 2
 }
