@@ -1,175 +1,113 @@
+@import url("./colors.css");
+
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: 'UbuntuMono Nerd Font Mono Bold' /*,  FontAwesome, Roboto, Helvetica, Arial, sans-serif*/;
+    font-family: 'UbuntuMono Nerd Font Mono Bold';
     font-size: 16px;
-    min-height: 10px;
-    font-weight: bold;
-    padding: 0 0 0 0;
-    color: #f5e0dc; /* rosewater */
-    color: #f2cdcd; /* flamingo */
-    color: #f5c2e7; /* pink */
-    color: #cba6f7; /* mauve */
-    color: #eba0ac; /* maroon */
-    color: #fab387; /* peach */
-    color: #f9e2af; /* yellow */
-    color: #a6e3a1; /* green */
-    color: #94e2d5; /* teal */
-    color: #89dceb; /* sky */
-    color: #74c7ec; /* sapphire */
-    color: #89b4fa; /* blue */
-    color: #b4befe; /* lavender */
-    color: #cdd6f4; /* text */
-    color: #bac2de; /* subtext1 */
-    color: #a6adc8; /* subtext0 */
-    color: #9399b2; /* overlay2 */
-    color: #7f849c; /* overlay1 */
-    color: #6c7086; /* overlay0 */
-    color: #585b70; /* surface2 */
-    color: #45475a; /* surface1 */
-    color: #313244; /* surface0 */
-    color: #1e1e2e; /* base */
-    color: #181825; /* mantle */
-    color: #11111b; /* crust */
-    color: #f38ba8; /* red */
-    /* actual colors used in the bar */
-    color: #f38ba8;
 }
 
 window#waybar {
     background: transparent;
-    /* background-color: #1e1e2e; */
-    /* transition-property: background-color;
-    transition-duration: .1s; */
+    color: @text;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.hidden {
-    opacity: 0.1;
-}
-window#waybar.solo {
-    background-color: transparent;
+label.module {
+    box-shadow: inset 0 -3px @border;
 }
 
-window#waybar.termite {
-    background-color: #3F3F3F;
+menu {
+    background-color: @bg;
 }
 
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
-*/
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-button {
-    padding: 0 10px;
-    /* Making all buttons rounded */
-    border-radius: 10px;
-    background-color: #11111b;
-    border: 2px solid #f38ba8;
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
-}
-
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #000000;
+menu label {
+    color: @text;
 }
 
 tooltip label {
     padding: 10px 10px 10px 10px;
     border-radius: 20px;
+    background-color: @bg;
+    color: @text;
 }
 
 label:focus {
-    background-color: #000000;
+    background-color: black;
 }
 
 #custom-apps {
-    padding: 0 10px;
-    font-size: 24px;
-    background-color: #11111b;
-    border: 3px solid #00e1ff;
-    color: #00e1ff;
-    border-radius: 10px;
+    padding: 3px 10px 0px;
+    font-size: 12px;
+    background-color: @bg;
+    border: 3px solid blue;
+    color: white;
+    border-radius: 15px;
 }
 
 #workspaces button {
-    background-color: #20202f;
+    color: @text;
+    background-color: @bg2;
     border: none;
+    /* Making all buttons rounded */
+    border-radius: 15px;
 }
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 1);
-    border: 2px solid #f38ba8;
-}
-
-#workspaces button.focused {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #f5e0dc;
-    border-top: 2px solid #f5e0dc;
+    background: black;
+    border: 2px solid @text;
+    box-shadow: inset 0 -3px @border;
 }
 
 #workspaces button.active {
-    background-color: #16161e;
-    border: 2px solid #db4b4b;
+    background-color: @bg;
+    border: 2px solid @strong-red;
+    box-shadow: inset 0 -3px @light-red;
+    border-radius: 15px;
 }
 
 #workspaces button.urgent {
-    background-color: #00ff2f;
-    color: #000000;
+    background-color: darkgreen;
 }
 
 #window {
     padding: 0 10px;
     border-radius: 10px;
-    background-color: #11111b;
-    border: 2px solid #313244;
-}
-
-#mpris {
-    padding: 0 10px;
-    border-radius: 10px;
-    background-color: #11111b;
-    color: #2ecc71;
-    border: 2px solid #313244;
-}
-
-#mpris.paused {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: @bg1;
+    border: 2px solid @border;
+    box-shadow: inset 0 -3px;
 }
 
 #clock {
     padding: 0 10px;
     border-radius: 10px;
-    background-color: #11111b;
-    border: 2px solid #313244;
+    background-color: @bg;
+    border: 2px solid @border;
 }
 
 #custom-notification {
-    padding: 0 5px 0 10px;
-    font-size: 16px;
-    background-color: #11111b;
-    border: 2px solid #313244;
+    padding: 0 5px 0px 15px;
+    background-color: @bg;
+    border: 2px solid @border;
     border-radius: 10px;
+}
+
+#mpris {
+    padding: 0 10px;
+    border-radius: 10px;
+    background-color: @bg;
+    color: @text1;
+    border: 2px solid @border;
+}
+
+#mpris.paused {
+    background-color: @bg;
+    color: @text1;
 }
 
 #tray {
     padding: 0 10px;
-    background-color: #11111b;
-    border: 2px solid #313244;
+    background-color: @bg;
+    border: 2px solid @border;
     border-radius: 10px;
+    box-shadow: inset 0 -3px;
 }
 
 #tray > .passive {
@@ -178,95 +116,100 @@ label:focus {
 }
 
 #tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
-    border-radius: 20px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    border-top: 5px solid red;
+    border-bottom: 5px solid red;
 }
 
 #custom-gmail {
     padding: 0 10px;
-    background-color: #11111b;
-    color: #ffffff;
-    border: 2px solid #313244;
+    background-color: @bg;
+    border: 2px solid @border;
     border-radius: 10px;
 }
 
 #wireplumber {
-    color: #89b4fa;
-    padding: 0 10px;
-    background-color: #11111b;
-    border: 2px solid #313244;
+    padding: 0 10px 0 10px;
+    background-color: @bg;
+    border: 2px solid @border;
     border-radius: 10px;
+    color: @green;
+}
+
+#wireplumber.source {
+    color: @peach;
 }
 
 #wireplumber.muted {
-    color: #f53c3c;
+    padding: 0 15px 0 10px;
+    color: @strong-red;
 }
 
-#pulseaudio {
-    color: #b929b6;
-    padding: 0 10px;
-    background-color: #11111b;
-    border: 2px solid #313244;
-    border-radius: 10px;
-}
-
-#bluetooth {
-    color: #89b4fa;
-    padding: 0 10px;
-    background-color: #11111b;
-    border: 2px solid #313244;
-    border-radius: 10px;
-}
-
-#network {
-    color: #2ecc71;
-    padding: 0 10px;
-    background-color: #11111b;
-    border: 2px solid #313244;
-    border-radius: 10px;
-}
-
-#network.disconnected {
-    background-color: #f53c3c;
-}
-
-#battery {
-    padding: 0 15px 0px 10px;
-    background-color: #11111b;
-    border: 2px solid #313244;
-    border-radius: 10px;
-}
-
-#battery.full {
-    color: #2ecc71;
-}
-
-#battery.low {
-    color: #f53c3c;
-}
-
-#battery.charging {
-    color: #2980b9;
+#wireplumber.source.muted {
+    padding: 0 17px 0 10px;
 }
 
 #power-profiles-daemon {
     padding: 0 15px 0px 10px;
-    border-radius: 10px;
-    border: 2px solid #000000;
+    border-radius: 15px;
+    border: 2px solid @border;
+    background-color: @bg;
 }
 
 #power-profiles-daemon.performance {
-    background-color: #f53c3c;
-    color: #ffffff;
+    padding: 0 12px 0px 12px;
+    font-size: 18px;
+    color: red;
 }
 
 #power-profiles-daemon.balanced {
-    background-color: #2980b9;
-    color: #ffffff;
+    color: blue;
 }
 
 #power-profiles-daemon.power-saver {
-    background-color: #2ecc71;
-    color: #000000;
+    color: @dark-green;
+}
+
+#bluetooth {
+    color: turquoise;
+    padding: 0 10px 0 10px;
+    background-color: @bg;
+    border: 2px solid @border;
+    border-radius: 10px;
+}
+
+#bluetooth.off {
+    color: gray;
+}
+
+#network {
+    padding: 0 17px 0 10px;
+    border-radius: 10px;
+    color: @blue;
+    background-color: @bg;
+    border: 2px solid @border;
+}
+
+#network.disconnected {
+    background-color: @strong-red;
+}
+
+#battery {
+    padding: 0 15px 0px 10px;
+    background-color: @bg;
+    border: 2px solid @border;
+    border-radius: 10px;
+}
+
+#battery.full {
+    color: @dark-green;
+}
+
+#battery.low {
+    color: red;
+}
+
+#battery.charging {
+    color: @sky;
 }

@@ -3,7 +3,6 @@
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 40, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     "output": ["*"],
     "mode": "dock",
@@ -19,8 +18,7 @@
       "modules": [
         "custom/apps",
         "hyprland/workspaces",
-        "hyprland/window",
-        "mpris"
+        "hyprland/window"
         ]
     },
     "group/center": {
@@ -33,18 +31,19 @@
     "group/right": {
       "orientation": "inherit",
       "modules": [
+        "mpris",
         "tray",
-        // "custom/gmail",
-        "wireplumber",
-        "pulseaudio",
+        "custom/gmail",
+        "wireplumber#sink",
+        "wireplumber#source",
+        "power-profiles-daemon",
         "bluetooth",
         "network",
-        "battery",
-        "power-profiles-daemon"
+        "battery"
     ]
     },
     "custom/apps": {
-        "format": "⌕",
+        "format": "🔍",
         "tooltip-format": "Search Apps ...",
         "on-click": "wofi"
     },
@@ -61,42 +60,14 @@
     },
     "hyprland/window": {
         "format": "{title}",
-        // truncate title to the last 25 chars, can be set to 0 for no truncation
-        "max-length": 25,
         "tooltip-format": "{title}",
-        // prevent text font size from being too big and increasing waybar height, can be set to 0 for no limit
-        "offscreen-css": true,
-        "offscreen-css-text": "(inactive)",
         "rewrite": {
-            "(.*) — Mozilla Firefox": "    $1",
+            "(.*) — Mozilla Firefox": "  $1",
             "(.*@.*~)": ">  [$1]",
             "(.*) - Brave": "  $1",
             "(.*) - Visual Studio Code": "Code: $1"
         },
         "separate-outputs": true
-    },
-    "mpris": {
-        "format": "{player_icon} <i>{dynamic}</i>",
-        "format-paused": "{status_icon} ",
-        "on-click": "playerctl play-pause",
-        "max-length": 20,
-        "tooltip": true,
-        "tooltip-format": "{player_icon}   Left click: Play/Pause    {status_icon}\n{dynamic}",
-        "player-icons": {
-            "chromium": "",
-            "default": "",
-            "firefox": "",
-            "kdeconnect": "",
-            "mopidy": "",
-            "mpv": "󰐹",
-            "spotify": "",
-            "vlc": "󰕼"
-        },
-        "status-icons": {
-            "paused": "▐▐",
-            "playing": "▶",
-            "stopped": "◼"
-        }
     },
     "clock": {
         "format": "  {:%d/%m     %H:%M}",
@@ -121,19 +92,18 @@
         },
         "tooltip-format": "<tt>{calendar}</tt>"
     },
-    // SwayNC
     "custom/notification": {
         "tooltip": true,
         "tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb",
         "format": "{} {icon} ",
         "format-icons": {
-            "notification": "<span foreground='red'><sup></sup></span>",
+            "notification": "<span foreground='red'></span>",
             "none": "",
-            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-notification": "<span foreground='red'></span>",
             "dnd-none": "",
-            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-notification": "<span foreground='red'></span>",
             "inhibited-none": "",
-            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-notification": "<span foreground='red'></span>",
             "dnd-inhibited-none": ""
         },
         "return-type": "json",
@@ -143,9 +113,34 @@
         "on-click-right": "swaync-client -d -sw",
         "escape": true
     },
+    // midia
+    "mpris": {
+        "format": "{player_icon} <i>{dynamic}</i>",
+        "format-paused": "{status_icon} ",
+        "on-click": "playerctl play-pause",
+        "max-length": 20,
+        "tooltip": true,
+        "tooltip-format": "{player_icon}   Left click: Play/Pause    {status_icon}\n{dynamic}",
+        "player-icons": {
+            "chromium": "",
+            "default": "",
+            "firefox": "",
+            "kdeconnect": "",
+            "mopidy": "",
+            "mpv": "󰐹",
+            "spotify": "",
+            "vlc": "󰕼"
+        },
+        "status-icons": {
+            "paused": "▐▐",
+            "playing": "▶",
+            "stopped": "◼"
+        }
+    },
     "tray": {
         "icon-size": 20,
-        "spacing": 15
+        "spacing": 15,
+        "show-passive-items": true
     },
     "custom/gmail": {
         "exec": "gmail-tray --once | grep '{'",
@@ -153,71 +148,31 @@
         "return-type": "json",
         "format": " @ {} "
     },
-    "wireplumber": {
+    // output audio
+    "wireplumber#sink": {
         "format": "{icon}   {volume}%",
         "format-muted": "",
         "format-icons": [
             "", "", "󰕾", ""
         ],
+        "align": 0.5,
+        "justify": "center",
+        "scroll-step": 5,
         // toggles output on left click, opens wiremix on right click, can be set to "none" for no action
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "ghostty -e wiremix"
     },
-    "pulseaudio": {
-        "format": "{format_source}",
-        "format-source": "  {volume}%",
-        "format-source-muted": "",
+    // input audio
+    "wireplumber#source": {
+        "node-type": "Audio/Source",
+        "format": "  {volume}%",
+        "format-muted": "",
+        "align": 0.5,
+        "justify": "center",
+        "scroll-step": 5,
         // toggles source on left click, opens wiremix on right click, can be set to "none" for no action
         "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
         "on-click-right": "ghostty -e wiremix"
-    },
-    // Bluetooth
-    "bluetooth": {
-        "format": "  {status}",
-        "interval": 30,
-        "tooltip-format-connected": "Connected devices: {num_connections} connected\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}\t| Battery life: {device_battery_percentage}%",
-        "format-no-controller": "",
-        // verify if bluetooth is on, if not enable it and show the module, if it is on, just show the module
-        "on-click": "if (bluetoothctl show | grep 'Powered: yes') then { bluetoothctl power off; } else { bluetoothctl power on; } fi",        "on-click-right": "ghostty -e bluetui"
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "max-length": 25,
-        "format": "{ifname}",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "format-wifi": "{icon}  ({signalStrength}%)",
-        "format-ethernet": " {ifname}",
-        "format-disconnected": "⚠",
-        "tooltip-format": "{ifname} / {gwaddr}",
-        "on-click-right": "nm-connection-editor",
-        "format-icons": [
-            "󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
-        ]
-    },
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-full": "{icon}",
-        "format-plugged": "{capacity}% ",
-        "tooltip-format": "Battery: {capacity}%\nPower: {power} Watts\nHealth: {health}%",
-        "events": {
-            "on-discharging-warning": "notify-send -u normal 'Low Battery'",
-            "on-discharging-critical": "notify-send -u critical 'Very Low Battery'",
-            "on-charging-100": "notify-send -u normal 'Battery Full!'"
-        },
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
     },
     "power-profiles-daemon": {
         "format": "{icon}",
@@ -228,5 +183,52 @@
             "balanced": "",
             "power-saver": ""
         }
+    },
+    "bluetooth": {
+        "format": " {status}",
+        "format-on": "<big><b>ᛒ</b></big>",
+        "format-off": "<big><b>ᚼ</b></big>",
+        "format-connected": "",
+        "interval": 30,
+        "tooltip-format-connected": "{num_connections} Device(s) connected\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "- {device_alias}",
+        "tooltip-format-enumerate-connected-battery": "{device_battery_percentage}% - {device_alias}",
+        "format-no-controller": "",
+        "on-click": "if (bluetoothctl show | grep 'Powered: yes') then { bluetoothctl power off; } else { bluetoothctl power on; } fi",        "on-click-right": "ghostty -e bluetui"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format": "{essid:.20}",
+        "format-alt": "{essid}",
+        "format-wifi": "{icon}",
+        "format-ethernet": " {ifname}",
+        "format-disconnected": "⚠",
+        "tooltip-format": "{essid}\nIP: {ipaddr}\n{ifname} / {gwaddr}/{cidr}",
+        "tooltip-format-wifi": "{essid}\nSignal: {signalStrength}%\nIP: {ipaddr}\n{ifname} / {gwaddr}/{cidr}",
+        "on-click-right": "nm-connection-editor",
+        "format-icons": [
+            "󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
+        ]
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{icon}",
+        "format-plugged": "{capacity}% ",
+        "tooltip-format": "Battery: {capacity}%\nPower: {power} Watts\nHealth: {health}%",
+        "events": {
+            "on-discharging-warning": "notify-send -u normal 'Low Battery'",
+            "on-discharging-critical": "notify-send -u critical 'Very Low Battery'"
+        },
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     }
 }
