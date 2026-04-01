@@ -21,7 +21,11 @@
     "github.copilot.nextEditSuggestions.enabled": true,
     "workbench.colorTheme": "matrixResolutions4128-2",
     "github.copilot.enable": {
-        "*": true
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "python": false
     },
     "files.autoSave": "onFocusChange",
     "git.ignoreRebaseWarning": true,
@@ -32,7 +36,8 @@
     "terminal.integrated.fontLigatures.enabled": true,
     "workbench.editorAssociations": {
         "*.copilotmd": "vscode.markdown.preview.editor",
-        "*.md": "default"
+        "*.md": "default",
+        "*.ipynb": "jupyter-notebook"
     },
     "editor.wordWrap": "on",
     "editor.autoIndentOnPaste": true,
@@ -56,5 +61,9 @@
     "workbench.secondarySideBar.defaultVisibility": "hidden",
     "terminal.integrated.cursorStyleInactive": "block",
     "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.cursorWidth": 2
+    "terminal.integrated.cursorWidth": 2,
+    "editor.detectIndentation": false,
+    "workbench.editor.highlightModifiedTabs": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "notebook.lineNumbers": "on"
 }
