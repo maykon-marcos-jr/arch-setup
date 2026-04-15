@@ -171,6 +171,79 @@
         "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
     },
     {
+        "key": "ctrl+s",
+        "command": "notebook.clearAllCellsOutputs",
+        "when": "config.notebook.globalToolbar && notebookKernelCount > 0 || config.notebook.globalToolbar && notebookKernelSourceCount > 0"
+    },
+    {
+        "key": "ctrl+k j",
+        "command": "-jupyter.insertCellBelow",
+        "when": "editorTextFocus && jupyter.hascodecells && !jupyter.webExtension && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+; b",
+        "command": "-jupyter.insertCellBelow",
+        "when": "editorTextFocus && jupyter.hascodecells && !jupyter.webExtension && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+k k",
+        "command": "-jupyter.insertCellAbove",
+        "when": "editorTextFocus && jupyter.hascodecells && !jupyter.webExtension && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+; a",
+        "command": "-jupyter.insertCellAbove",
+        "when": "editorTextFocus && jupyter.hascodecells && !jupyter.webExtension && !notebookEditorFocused"
+    },
+    {
+        "key": "c c",
+        "command": "jupyter.insertCellBelowPosition",
+        "when": "editorTextFocus && isWorkspaceTrusted && jupyter.hascodecells && !jupyter.webExtension && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+; s",
+        "command": "-jupyter.insertCellBelowPosition",
+        "when": "editorTextFocus && isWorkspaceTrusted && jupyter.hascodecells && !jupyter.webExtension && !notebookEditorFocused"
+    },
+    {
+        "key": "shift+alt+m",
+        "command": "notebook.cell.insertMarkdownCellAbove"
+    },
+    {
+        "key": "alt+m",
+        "command": "notebook.cell.insertMarkdownCellBelow"
+    },
+    {
+        "key": "ctrl+m ctrl+b",
+        "command": "jupyter.changeCellToCode",
+        "when": "editorTextFocus && jupyter.hascodecells && !jupyter.webExtension && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+; c",
+        "command": "-jupyter.changeCellToCode",
+        "when": "editorTextFocus && jupyter.hascodecells && !jupyter.webExtension && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+m ctrl+m",
+        "command": "-jupyter.changeCellToMarkdown",
+        "when": "editorTextFocus && jupyter.hascodecells && !jupyter.webExtension && !notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+; m",
+        "command": "-jupyter.changeCellToMarkdown",
+        "when": "editorTextFocus && jupyter.hascodecells && !jupyter.webExtension && !notebookEditorFocused"
+    },
+    {
+        "key": "alt+c",
+        "command": "notebook.cell.insertCodeCellBelow",
+        "when": "notebookCellListFocused && !inputFocus"
+    },
+    {
+        "key": "ctrl+enter",
+        "command": "-notebook.cell.insertCodeCellBelow",
+        "when": "notebookCellListFocused && !inputFocus"
+    },
+    {
         "key": "ctrl+m",
         "command": "-editor.action.toggleTabFocusMode"
     },
