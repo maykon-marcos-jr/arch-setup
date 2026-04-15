@@ -13,6 +13,7 @@ loginctl enable-linger $USER
 
 read -p "Press Enter to enable systemd-homed services "
 systemctl enable --now systemd-homed
+systemctl --user enable --now gnome-keyring-daemon
 
 # IBus configuration
 echo "configuring IBus"
