@@ -65,5 +65,6 @@
     "editor.detectIndentation": false,
     "workbench.editor.highlightModifiedTabs": true,
     "liveServer.settings.donotShowInfoMsg": true,
-    "notebook.lineNumbers": "on"
+    "notebook.lineNumbers": "on",
+    "extensions.ignoreRecommendations": true
 }

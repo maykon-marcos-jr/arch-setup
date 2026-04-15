@@ -104,9 +104,6 @@ if [ -d ~/Books/calibre ]; then
     ln -sfn ~/Books/calibre ~/.config/
 fi
 
-read -p "Press enter to enable gmail-tray service "
-systemctl --user enable gmail-tray.service
-
 # 	copy fonts and update font cache
 echo "copying fonts to /usr/local/share/fonts and updating font cache"
 sudo mkdir -p /usr/local/share/fonts

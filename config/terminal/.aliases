@@ -1,5 +1,5 @@
 alias list='bat --color=always ~/.aliases'
-alias binds='bat --color=always ~/arch-setup/config/hyprland/conf/binds.conf'
+alias binds='bat --color=always ~/arch-setup/config/hypr/conf/binds.conf'
 alias upd='paru -Suy --noconfirm && rustup -q update && sudo pacman -Qdtq | sudo xargs -r pacman -Rns --noconfirm'
 alias get-music='yt-dlp --format bestaudio --extract-audio --audio-format mp3 --audio-quality 192K --embed-thumbnail --output "%(title)s.%(ext)s"'
 alias get-video='yt-dlp -t mp4 --embed-metadata --write-subs --output "%(title)s.%(ext)s"'

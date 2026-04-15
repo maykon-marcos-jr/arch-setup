@@ -33,7 +33,6 @@
       "modules": [
         "mpris",
         "tray",
-        "custom/gmail",
         "wireplumber#sink",
         "wireplumber#source",
         "power-profiles-daemon",
@@ -118,7 +117,7 @@
         "format": "{player_icon} <i>{dynamic}</i>",
         "format-paused": "{status_icon} ",
         "on-click": "playerctl play-pause",
-        "max-length": 20,
+        // "max-length": 20,
         "tooltip": true,
         "tooltip-format": "{player_icon}   Left click: Play/Pause    {status_icon}\n{dynamic}",
         "player-icons": {
@@ -146,7 +145,7 @@
         "exec": "gmail-tray --once | grep '{'",
         "interval": 30,
         "return-type": "json",
-        "format": " @ {} "
+        "format": "✉ {}"
     },
     // output audio
     "wireplumber#sink": {
@@ -201,7 +200,7 @@
         "format": "{essid:.20}",
         "format-alt": "{essid}",
         "format-wifi": "{icon}",
-        "format-ethernet": " {ifname}",
+        "format-ethernet": "📶",
         "format-disconnected": "⚠",
         "tooltip-format": "{essid}\nIP: {ipaddr}\n{ifname} / {gwaddr}/{cidr}",
         "tooltip-format-wifi": "{essid}\nSignal: {signalStrength}%\nIP: {ipaddr}\n{ifname} / {gwaddr}/{cidr}",
