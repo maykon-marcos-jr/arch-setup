@@ -77,21 +77,23 @@ ln -sfn ~/arch-setup/credentials/fetchmailrc ~/.fetchmailrc
 mkdir -p ~/.config/gmail-tray
 ln -sfn ~/arch-setup/config/gmail-tray/gmail-tray-configs.json ~/.config/gmail-tray/
 
-# Setting up rclone settings
+# light control service for automatic brightness adjustment
+echo "setting up light control service for automatic brightness adjustment"
+mkdir -p ~/.config/systemd/user
+ln -sfn ~/arch-setup/.local/services/* ~/.config/systemd/user/
+
+# Setting up rclone settings and synchronization service
 echo "Setting up remote folders"
 mkdir -p ~/.config/rclone
+# verify if rclone configuration backup exists, if not, create an empty file to avoid errors
+if [ ! -f ~/arch-setup/credentials/rclone.conf ]; then
+    touch ~/arch-setup/credentials/rclone.conf
+fi
 ln -sfn ~/arch-setup/credentials/rclone.conf ~/.config/rclone/
-bash ~/arch-setup/config/cloud/rclone_setup.sh
-read -p "Press enter to enable rclone-sync timer and service "
-sudo ln -sfn ~/arch-setup/config/cloud/sync_remote_folders.sh /usr/local/bin/sync_remote_folders.sh
-ln -sfn ~/arch-setup/config/cloud/remote_folders.list ~/.config/rclone/
-mkdir -p ~/.config/systemd/user
-ln -sfn ~/arch-setup/config/cloud/rclone-sync.service ~/.config/systemd/user/rclone-sync.service
-ln -sfn ~/arch-setup/config/cloud/rclone-sync.timer ~/.config/systemd/user/rclone-sync.timer
-systemctl --user daemon-reload
-systemctl --user enable --now rclone-sync.service
-systemctl --user enable --now rclone-sync.timer
-
+bash ~/arch-setup/config/rclone/rclone_setup.sh
+sudo ln -sfn ~/arch-setup/config/rclone/sync_remote_folders.sh /usr/local/bin/sync_remote_folders.sh
+ln -sfn ~/arch-setup/config/rclone/remote_folders.list ~/.config/rclone/
+# Preparing custom settings for Books
 echo "setting up calibre configuration"
 # if calibre configuration exists in ~/.config/calibre, remove it
 if [ -d ~/.config/calibre ]; then

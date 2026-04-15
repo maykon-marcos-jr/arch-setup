@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# ----- configuration -----
+START_LEVEL=100     # % at START_HOUR
+DIM_HOUR=17         # hour when dimming begins (24‑h clock)
+STEP=5              # % change every INTERVAL minutes
+INTERVAL=15         # minutes between steps
+# -------------------------
+
+# Helper: set brightness (no sudo needed)
+set_brightness() {
+    local perc=$1
+    echo "Setting brightness to ${perc}%"
+    brightnessctl -s set "${perc}%"
+}
+
+# Main loop
+while true; do
+    hour=$(date +%H)
+    min=$(date +%M)
+    sleep_min=0
+
+
+    # dimming period 17:00‑23:59
+    if [[ hour -ge DIM_HOUR ]]; then
+        # read intervals passed since DIM_HOUR
+        intervals=$(( ( (hour - DIM_HOUR) * 60 + min ) / INTERVAL ))
+        next=$(( START_LEVEL - intervals * STEP ))
+        set_brightness "$next"
+
+        # get how many minutes until the next step
+        sleep_min=$(( INTERVAL - ( min % INTERVAL ) ))
+    else
+        set_brightness "$START_LEVEL"
+        # outside dimming period, sleep until the DIM_HOUR
+        sleep_min=$(( (DIM_HOUR - hour) * 60 + (60 - min) ))
+    fi
+    sleep $(( sleep_min * 60 ))
+done

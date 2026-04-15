@@ -1,0 +1,12 @@
+[Unit]
+Description=Brightness schedule for Hyprland
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/light_ctrl
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
