@@ -66,5 +66,6 @@
     "workbench.editor.highlightModifiedTabs": true,
     "liveServer.settings.donotShowInfoMsg": true,
     "notebook.lineNumbers": "on",
-    "extensions.ignoreRecommendations": true
+    "extensions.ignoreRecommendations": true,
+    "workbench.editor.enablePreview": false
 }

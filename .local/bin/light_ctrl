@@ -3,7 +3,7 @@ set -euo pipefail
 
 # ----- configuration -----
 START_LEVEL=100     # % at START_HOUR
-DIM_HOUR=17         # hour when dimming begins (24‑h clock)
+DIM_HOUR=16         # hour when dimming begins (24‑h clock)
 STEP=5              # % change every INTERVAL minutes
 INTERVAL=15         # minutes between steps
 # -------------------------
@@ -33,8 +33,8 @@ while true; do
         sleep_min=$(( INTERVAL - ( min % INTERVAL ) ))
     else
         set_brightness "$START_LEVEL"
-        # outside dimming period, sleep until the DIM_HOUR
-        sleep_min=$(( (DIM_HOUR - hour) * 60 + (60 - min) ))
+        # outside dimming period, sleep 1 hour
+        sleep_min=60
     fi
     sleep $(( sleep_min * 60 ))
 done

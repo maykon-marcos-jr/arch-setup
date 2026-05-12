@@ -117,7 +117,7 @@
         "format": "{player_icon} <i>{dynamic}</i>",
         "format-paused": "{status_icon} ",
         "on-click": "playerctl play-pause",
-        // "max-length": 20,
+        "max-length": 30,
         "tooltip": true,
         "tooltip-format": "{player_icon}   Left click: Play/Pause    {status_icon}\n{dynamic}",
         "player-icons": {
