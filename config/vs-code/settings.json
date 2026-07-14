@@ -67,5 +67,14 @@
     "liveServer.settings.donotShowInfoMsg": true,
     "notebook.lineNumbers": "on",
     "extensions.ignoreRecommendations": true,
-    "workbench.editor.enablePreview": false
+    "workbench.editor.enablePreview": false,
+    "todo-tree.general.statusBar": "current file",
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "[ ]"
+    ],
+    "chat.viewSessions.orientation": "stacked"
 }
