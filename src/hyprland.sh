@@ -9,5 +9,4 @@ echo "creating symlinks for hyprland config"
 ln -sfn ~/arch-setup/config/hypr ~/.config/
 ln -sfn ~/arch-setup/config/sunsetr ~/.config/
 ln -sfn ~/arch-setup/config/waybar ~/.config/
-ln -sfn ~/arch-setup/config/wl-kbptr/ ~/.config/
 ln -sfn ~/arch-setup/config/wofi ~/.config/

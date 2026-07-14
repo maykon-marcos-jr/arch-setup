@@ -10,7 +10,6 @@ hyprpaper
 hyprshot
 hyprpolkitagent
 hyprutils
-hyprland-toggle-tiling-git
 hyprqt6engine
 nwg-look
 playerctl
@@ -18,7 +17,6 @@ sunsetr
 swaync
 sysc-greet-hyprland
 waybar
-wl-kbptr
 wlrctl
 wofi
 xdg-desktop-portal-hyprland
