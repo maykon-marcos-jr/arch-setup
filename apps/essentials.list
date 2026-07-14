@@ -37,7 +37,7 @@ polkit
 polkit-qt5
 polkit-qt6
 power-profiles-daemon
-python-pip
+python-opencv
 qt5ct
 qt5-wayland
 qt6-wayland
@@ -51,6 +51,7 @@ usbutils
 uutils-coreutils
 uutils-diffutils
 uutils-findutils
+uv
 vlc-plugin-ffmpeg
 wget
 wiremix
