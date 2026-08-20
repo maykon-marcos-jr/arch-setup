@@ -20,6 +20,7 @@ grub
 gst-plugin-pipewire
 ibus
 less
+kdeconnect-git
 libcamera
 libdecor
 libxcb
