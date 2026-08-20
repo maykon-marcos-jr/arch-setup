@@ -1,0 +1,91 @@
+------------------------------------
+------ WINDOWS AND WORKSPACES ------
+------------------------------------
+
+
+-- See https://wiki.hypr.land/Configuring/Window-Rules/ for more
+
+hl.window_rule(
+    --     {
+    --         name = "xwayland-video-bridge-fixes",
+    --         match = {
+        --             class = "xwaylandvideobridge"
+    --         },
+
+    --         no_initial_focus = true,
+    --         no_focus = true,
+    --         no_anim = true,
+    --         no_blur = true,
+    --         max_size = {1,1},
+    --         opacity = 0.0
+    --     },
+
+    -- Ignore maximize requests from apps.
+    {
+        suppress_event = "maximize",
+        match = {
+            class = "^$"
+        }
+    }
+)
+
+
+hl.config({
+
+    xwayland = {
+        enabled = true,
+    },
+
+    opengl = {
+        nvidia_anti_flicker = true
+    },
+
+    quirks = {
+        prefer_hdr = 1
+    },
+
+    -- Ref https://wiki.hypr.land/Configuring/Workspace-Rules/
+    -- "Smart gaps" / "No gaps when only"
+    -- uncomment all if you wish to use that.
+    -- workspace = w[tv1], gapsout:0, gapsin:0
+    -- workspace = f[1], gapsout:0, gapsin:0
+    -- windowrule = bordersize 0, floating:0, onworkspace:w[tv1]
+    -- windowrule = rounding 0, floating:0, onworkspace:w[tv1]
+    -- windowrule = bordersize 0, floating:0, onworkspace:f[1]
+    -- windowrule = rounding 0, floating:0, onworkspace:f[1]
+
+    -- See https://wiki.hypr.land/Configuring/Dwindle-Layout/ for more
+    dwindle = {
+        -- Pseudotiled windows retain their floating size when tiled.
+        -- pseudotile = false
+        -- if enabled, the split (side/top) will not change regardless of what happens to the container.
+        preserve_split = true,
+        -- always split to the right (new = right or bottom)
+        force_split = 2,
+        -- if enabled, resizing direction will be determined by the mouse’s position on the window (nearest to which corner). Else, it is based on the window’s tiling position.
+        smart_resizing = false,
+        use_active_for_splits = false,
+    },
+
+    -- See https://wiki.hypr.land/Configuring/Master-Layout/ for more
+    master = {
+        new_status = inherit,
+        allow_small_split = true,
+        mfact = 0.5, -- Master area size ratio
+        smart_resizing = true,
+    },
+
+    general = {
+        -- Set to true enable resizing windows by clicking and dragging on borders and gaps
+        resize_on_border = true,
+
+        -- Please see https://wiki.hypr.land/Configuring/Tearing/ before you turn this on
+        allow_tearing = true,
+
+        layout = "dwindle",
+
+        -- Don't fall back to the next available window when moving focus in a direction where no window was found
+        no_focus_fallback = true,
+    }
+
+})
