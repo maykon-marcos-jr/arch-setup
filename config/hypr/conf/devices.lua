@@ -10,7 +10,7 @@ hl.monitor({
     output = "",
     mode = "highres",
     position = "auto",
-    scale = 1.2,
+    scale = 1.25,
     mirror = "eDP-1",
     sdrbrightness = 1.0,
     sdrsaturation = 1.0,
