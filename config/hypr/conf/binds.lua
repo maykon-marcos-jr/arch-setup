@@ -25,13 +25,27 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
 
-hl.bind("ALT + F4", hl.dsp.exec_cmd("bash ~/.config/hypr/conf/scripts/quit.sh"))
+local function close_or_shutdown()
+    local windows = hl.get_windows()
+
+    if #windows == 0 then
+        hl.dispatch(hl.dsp.exec_cmd(
+            "zenity --question --text='Shut Down?' && systemctl poweroff"
+        ))
+        return
+    end
+
+    hl.dispatch(hl.dsp.window.close())
+end
+
+-- hl.bind("ALT + F4", hl.dsp.exec_cmd("bash ~/.config/hypr/conf/scripts/quit.sh"))
+hl.bind("ALT + F4", close_or_shutdown)
 -- Lock screen
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("hyprctl switchxkblayout current next"))
 -- Launchers
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("pkill " .. menu .. " || " .. menu .. " &"))
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser .. " -P UFSC"))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("gtk-launch calendar-notion"))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("discord"))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(fileManager))

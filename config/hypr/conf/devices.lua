@@ -8,9 +8,9 @@ hl.monitor({
 })
 hl.monitor({
     output = "",
-    mode = "1920x1080@144",
+    mode = "highres",
     position = "auto",
-    scale = 1,
+    scale = 1.2,
     mirror = "eDP-1",
     sdrbrightness = 1.0,
     sdrsaturation = 1.0,
@@ -41,10 +41,6 @@ hl.config({
         },
 
     },
-
-    -- See https://wiki.hypr.land/Configuring/Gestures
-    -- gesture = 3, horizontal, workspace
-
 
 })
 
