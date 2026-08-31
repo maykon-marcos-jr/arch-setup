@@ -11,11 +11,11 @@ fi
 
 # Read through each line in the remote folders file
 while IFS=',' read -r remote_path local_path; do
-  if [[ -n "$remote_path" && -n "$local_path" ]]; then
-    echo "Syncing $remote_path to $local_path"
+  if [[ -n "$remote_path" && -n "$HOME/$local_path" ]]; then
+    echo "Syncing $remote_path to $HOME/$local_path"
     # Sync new and updated files from remote to local, and then from local to remote
-    rclone sync "$remote_path" "$local_path" --backup-dir="$local_path/backup" --progress --log-file="$local_path/sync.log" --log-level=INFO --update
-    rclone sync "$local_path" "$remote_path" --backup-dir="$local_path/backup" --progress --log-file="$local_path/sync.log" --log-level=INFO --update
+    rclone sync "$remote_path" "$HOME/$local_path" --backup-dir="$HOME/.local/share/rclone/backup" --progress --log-file="$HOME/$local_path/sync.log" --log-level=INFO --update --exclude "$remote_path/backup"
+    rclone sync "$HOME/$local_path" "$remote_path" --progress --log-file="$HOME/$local_path/sync.log" --log-level=INFO --update
   fi
 done < "$REMOTE_FOLDERS_FILE"
 
