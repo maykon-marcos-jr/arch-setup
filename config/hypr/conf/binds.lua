@@ -61,6 +61,10 @@ hl.bind(mainMod .. " + F11", hl.dsp.window.fullscreen({
     mode = "fullscreen",
     action = "toggle"
 }))
+hl.bind(mainMod .. " + HOME", hl.dsp.window.fullscreen({
+    mode = "fullscreen",
+    action = "toggle"
+}))
 
 -- adding alt+tab functionality
 hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
