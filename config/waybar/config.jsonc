@@ -20,16 +20,16 @@
         "hyprland/workspaces",
         "mpris"
         // "hyprland/window"
-        ]
-    },
-    "group/center": {
-      "orientation": "inherit",
-      "modules": [
+    ]
+},
+"group/center": {
+    "orientation": "inherit",
+    "modules": [
         "clock",
         "custom/notification"
     ]
-    },
-    "group/right": {
+},
+"group/right": {
       "orientation": "inherit",
       "modules": [
         "wlr/taskbar",
@@ -241,6 +241,7 @@
             "on-discharging-warning": "notify-send -u normal 'Low Battery'",
             "on-discharging-critical": "notify-send -u critical 'Very Low Battery'"
         },
+        "on-click": "wlogout --protocol layer-shell",
         "format-icons": [
             "",
             "",
