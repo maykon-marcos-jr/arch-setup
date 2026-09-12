@@ -2,11 +2,13 @@
 ------ LOOK AND FEEL ------
 ---------------------------
 
---for libadwaita gtk4 apps you can use this command:
--- for GTK4 apps
-hl.dsp.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
--- for GTK3 apps
-hl.dsp.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-mocha-red-standard+default'")
+hl.on("hyprland.start", function ()
+    --for libadwaita gtk4 apps you can use this command:
+    -- for GTK4 apps
+    hl.dsp.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
+    -- for GTK3 apps
+    hl.dsp.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-mocha-red-standard+default'")
+end)
 
 -- Refer to https://wiki.hypr.land/Configuring/Variables/
 
