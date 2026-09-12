@@ -18,7 +18,8 @@
       "modules": [
         "custom/apps",
         "hyprland/workspaces",
-        "hyprland/window"
+        "mpris"
+        // "hyprland/window"
         ]
     },
     "group/center": {
@@ -31,13 +32,13 @@
     "group/right": {
       "orientation": "inherit",
       "modules": [
-        "mpris",
+        "wlr/taskbar",
         "tray",
         "wireplumber#sink",
-        "wireplumber#source",
-        "power-profiles-daemon",
         "bluetooth",
-        "network",
+        "wireplumber#source",
+        // "power-profiles-daemon",
+        // "network",
         "battery"
     ]
     },
@@ -47,14 +48,31 @@
         "on-click": "wofi"
     },
     "hyprland/workspaces": {
-        "disable-scroll": true,
+        // "disable-scroll": true,
+        "on-scroll-up": "hyprctl dispatch \"hl.dsp.focus({workspace = 'e-1'})\"",
+        "on-scroll-down": "hyprctl dispatch \"hl.dsp.focus({workspace = 'e+1'})\"",
+        "on-click": "activate",
         "all-outputs": true,
-        "warp-on-scroll": false,
+        "warp-on-scroll": true,
         "format": "{id}",
         "format-icons": {
             "urgent": "",
             "active": "",
             "default": ""
+        }
+    },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 16,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "all-outputs": true,
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "  $1",
+            "(.*@.*~)": ">  [$1]",
+            "(.*) - Brave": "  $1",
+            "(.*) - Visual Studio Code": "Code: $1"
         }
     },
     "hyprland/window": {
@@ -114,12 +132,12 @@
     },
     // midia
     "mpris": {
-        "format": "{player_icon} <i>{dynamic}</i>",
-        "format-paused": "{status_icon} ",
+        "format": "{player_icon} {title}",
+        "format-paused": "{status_icon}",
         "on-click": "playerctl play-pause",
         "max-length": 30,
         "tooltip": true,
-        "tooltip-format": "{player_icon}   Left click: Play/Pause    {status_icon}\n{dynamic}",
+        "tooltip-format": "{dynamic}",
         "player-icons": {
             "chromium": "",
             "default": "",
@@ -139,7 +157,8 @@
     "tray": {
         "icon-size": 20,
         "spacing": 15,
-        "show-passive-items": true
+        "show-passive-items": true,
+        "reverse-direction": true
     },
     "custom/gmail": {
         "exec": "gmail-tray --once | grep '{'",
@@ -149,7 +168,7 @@
     },
     // output audio
     "wireplumber#sink": {
-        "format": "{icon}   {volume}%",
+        "format": "{icon} {volume}%",
         "format-muted": "",
         "format-icons": [
             "", "", "󰕾", ""
@@ -164,7 +183,7 @@
     // input audio
     "wireplumber#source": {
         "node-type": "Audio/Source",
-        "format": "  {volume}%",
+        "format": " {volume}%",
         "format-muted": "",
         "align": 0.5,
         "justify": "center",

@@ -45,7 +45,7 @@ label:focus {
 #workspaces button {
     color: @text;
     background-color: @bg2;
-    border: none;
+    border: 1px solid;
     /* Making all buttons rounded */
     border-radius: 15px;
 }
@@ -75,6 +75,28 @@ label:focus {
     box-shadow: inset 0 -3px;
 }
 
+#taskbar {
+    padding: 0 10px;
+    /* border-radius: 10px;
+    background-color: @bg1;
+    border: 2px solid @border; */
+}
+
+#taskbar button {
+    color: @text;
+    background-color: @bg2;
+    border: 1px solid @border;
+    /* Making all buttons rounded */
+    border-radius: 15px;
+    box-shadow: inset 0 -2px;
+}
+
+#taskbar button.active {
+    border: 2px solid;
+    background-color: @bg1;
+    box-shadow: inset 0 -5px red;
+}
+
 #clock {
     padding: 0 10px;
     border-radius: 10px;
@@ -98,6 +120,7 @@ label:focus {
 }
 
 #mpris.paused {
+    padding: 0 15px 0px 10px;
     background-color: @bg;
     color: @text1;
 }

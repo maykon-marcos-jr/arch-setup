@@ -4,6 +4,8 @@ hl.on("hyprland.start", function ()
     -- Autostart necessary processes (like notifications daemons, status bars, etc.)
     -- user auth
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
+    -- network
+    hl.exec_cmd("nm-applet")
     -- notifications
     hl.exec_cmd("swaync")
     -- clipboard manager

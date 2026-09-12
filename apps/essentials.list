@@ -27,6 +27,7 @@ libxcb
 linux-headers
 make
 networkmanager
+network-manager-applet
 nodejs
 noto-fonts-cjk
 pipewire
