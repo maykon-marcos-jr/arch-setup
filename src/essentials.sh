@@ -38,3 +38,12 @@ sudo modprobe uvcvideo
 read -p "Press Enter to enable power-profiles-daemon service "
 sudo systemctl enable power-profiles-daemon.service
 sudo systemctl start power-profiles-daemon.service
+
+# Enable TRIM on SSD
+lsblk --discard
+read -p "IF you have an SSD (DISC-GRAN and DISC-MAX != 0), press Enter to enable TRIM "
+sudo systemctl enable fstrim.timer
+
+# Enable profile-sync-daemon service
+read -p "Press Enter to enable profile-sync-daemon service "
+systemctl --user enable psd

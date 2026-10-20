@@ -39,6 +39,7 @@ polkit
 polkit-qt5
 polkit-qt6
 power-profiles-daemon
+profile-sync-daemon
 python-opencv
 qt5ct
 qt5-wayland
@@ -50,6 +51,7 @@ swtpm
 tar
 unzip
 usbutils
+util-linux
 uutils-coreutils
 uutils-diffutils
 uutils-findutils
