@@ -8,6 +8,7 @@ terminal = "ghostty"
 fileManager = terminal .. " -e yazi"
 menu = "wofi"
 browser = "firefox  --ProfileManager"
+browser = "firefox -P Lax"
 
 -- unmapping F11
 -- bind = , F11, exec, true
@@ -45,7 +46,7 @@ hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd("hyprctl switchxkblayout current next"))
 -- Launchers
 hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("pkill " .. menu .. " || " .. menu .. " &"))
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser .. " -P UFSC"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("gtk-launch calendar-notion"))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("discord"))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(fileManager))
@@ -55,6 +56,8 @@ hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian"))
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("swaync-client -t -sw"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("code"))
+hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr -o modes=tile,split &"))
+hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr &"))
 hl.bind("ALT + W", hl.dsp.exec_cmd("whatsit"))
 -- Toggle fullscreen
 hl.bind(mainMod .. " + F11", hl.dsp.window.fullscreen({
@@ -65,6 +68,7 @@ hl.bind(mainMod .. " + HOME", hl.dsp.window.fullscreen({
     mode = "fullscreen",
     action = "toggle"
 }))
+
 
 -- adding alt+tab functionality
 hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
@@ -97,10 +101,10 @@ hl.bind(mainMod .. " + SHIFT + Page_up", hl.dsp.window.move({ workspace = "r-1" 
 hl.bind(mainMod .. " + SHIFT + Page_down", hl.dsp.window.move({ workspace = "r+1" }))
 
 -- Set repeatable hl.bind(s for resizing the active window.
-hl.bind(mainMod .. " + SHIFT + ALT + right", hl.dsp.window.resize({ x = "+5", y = "0", relative = true }))
-hl.bind(mainMod .. " + SHIFT + ALT + left", hl.dsp.window.resize({ x = "-5", y = "0", relative = true }))
-hl.bind(mainMod .. " + SHIFT + ALT + up", hl.dsp.window.resize({ x = "0", y = "-5", relative = true }))
-hl.bind(mainMod .. " + SHIFT + ALT + down", hl.dsp.window.resize({ x = "0", y = "+5", relative = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + right", hl.dsp.window.resize({ x = "+5", y = "0", relative = true, repeating = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + left", hl.dsp.window.resize({ x = "-5", y = "0", relative = true, repeating = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + up", hl.dsp.window.resize({ x = "0", y = "-5", relative = true, repeating = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + down", hl.dsp.window.resize({ x = "0", y = "+5", relative = true, repeating = true }))
 
 hl.bind(mainMod .. "+ F1", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), {locked = true, repeating = true})
 hl.bind(mainMod .. "+ F2", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), {locked = true, repeating = true})
@@ -129,23 +133,23 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), {locked = true
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), {locked = true})
 
 -- Cursor movement
-hl.bind(mainMod .. "+ ALT + down", hl.dsp.exec_cmd("wlrctl pointer move 0 10"))
-hl.bind(mainMod .. "+ ALT + up", hl.dsp.exec_cmd("wlrctl pointer move 0 -10"))
-hl.bind(mainMod .. "+ ALT + right", hl.dsp.exec_cmd("wlrctl pointer move 10 0"))
-hl.bind(mainMod .. "+ ALT + left", hl.dsp.exec_cmd("wlrctl pointer move -10 0"))
+hl.bind(mainMod .. "+ ALT + down", hl.dsp.exec_cmd("wlrctl pointer move 0 10"), {repeating = true})
+hl.bind(mainMod .. "+ ALT + up", hl.dsp.exec_cmd("wlrctl pointer move 0 -10"), {repeating = true})
+hl.bind(mainMod .. "+ ALT + right", hl.dsp.exec_cmd("wlrctl pointer move 10 0"), {repeating = true})
+hl.bind(mainMod .. "+ ALT + left", hl.dsp.exec_cmd("wlrctl pointer move -10 0"), {repeating = true})
 -- faster movement
-hl.bind(mainMod .. "+ CTRL + down", hl.dsp.exec_cmd("wlrctl pointer move 0 75"))
-hl.bind(mainMod .. "+ CTRL + up", hl.dsp.exec_cmd("wlrctl pointer move  0 -75"))
-hl.bind(mainMod .. "+ CTRL + right", hl.dsp.exec_cmd("wlrctl pointer move  75 0"))
-hl.bind(mainMod .. "+ CTRL + left", hl.dsp.exec_cmd("wlrctl pointer move  -75 0"))
+hl.bind(mainMod .. "+ CTRL + down", hl.dsp.exec_cmd("wlrctl pointer move 0 75"), {repeating = true})
+hl.bind(mainMod .. "+ CTRL + up", hl.dsp.exec_cmd("wlrctl pointer move  0 -75"), {repeating = true})
+hl.bind(mainMod .. "+ CTRL + right", hl.dsp.exec_cmd("wlrctl pointer move  75 0"), {repeating = true})
+hl.bind(mainMod .. "+ CTRL + left", hl.dsp.exec_cmd("wlrctl pointer move  -75 0"), {repeating = true})
 
 -- -- Scroll up and down
-hl.bind(mainMod .. "+ ALT + w", hl.dsp.exec_cmd("wlrctl pointer scroll -10 0"))
-hl.bind(mainMod .. "+ ALT + s", hl.dsp.exec_cmd("wlrctl pointer scroll 10 0"))
+hl.bind(mainMod .. "+ ALT + w", hl.dsp.exec_cmd("wlrctl pointer scroll -10 0"), {repeating = true})
+hl.bind(mainMod .. "+ ALT + s", hl.dsp.exec_cmd("wlrctl pointer scroll 10 0"), {repeating = true})
 
 -- -- Scroll left and right
-hl.bind(mainMod .. "+ ALT + a", hl.dsp.exec_cmd("wlrctl pointer scroll 0 10"))
-hl.bind(mainMod .. "+ ALT + d", hl.dsp.exec_cmd("wlrctl pointer scroll 0 -10"))
+hl.bind(mainMod .. "+ ALT + a", hl.dsp.exec_cmd("wlrctl pointer scroll 0 10"), {repeating = true})
+hl.bind(mainMod .. "+ ALT + d", hl.dsp.exec_cmd("wlrctl pointer scroll 0 -10"), {repeating = true})
 
 -- Left button
 hl.bind(mainMod .. "+ Return", hl.dsp.exec_cmd("wlrctl pointer click left"))

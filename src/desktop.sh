@@ -73,6 +73,11 @@ ln -sfn ~/arch-setup/credentials/fetchmailrc ~/.fetchmailrc
 mkdir -p ~/.config/gmail-tray
 ln -sfn ~/arch-setup/config/gmail-tray/gmail-tray-configs.json ~/.config/gmail-tray/
 
+echo "setting up wl-kbptr configuration"
+mkdir -p ~/.config/wl-kbptr
+ln -sfn ~/arch-setup/config/wl-kbptr/config ~/.config/wl-kbptr/config
+
+
 # light control service for automatic brightness adjustment
 echo "setting up light control service for automatic brightness adjustment"
 mkdir -p ~/.config/systemd/user
