@@ -171,7 +171,7 @@
         "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
     },
     {
-        "key": "ctrl+s",
+        "key": "shift+backspace",
         "command": "notebook.clearAllCellsOutputs",
         "when": "config.notebook.globalToolbar && notebookKernelCount > 0 || config.notebook.globalToolbar && notebookKernelSourceCount > 0"
     },
@@ -264,5 +264,9 @@
         "key": "ctrl+shift+tab",
         "command": "-workbench.action.quickOpenNavigatePreviousInEditorPicker",
         "when": "inEditorsPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+shift+enter",
+        "command": "jupyter.runallcells"
     }
 ]

@@ -76,5 +76,19 @@
         "TODO",
         "[ ]"
     ],
-    "chat.viewSessions.orientation": "stacked"
+    "chat.viewSessions.orientation": "stacked",
+    "jupyter.widgetScriptSources": [
+        "jsdelivr.com",
+        "unpkg.com"
+    ],
+    "todo-tree.ripgrep.ripgrep": "/usr/bin/rg",
+    "workbench.settings.applyToAllProfiles": [
+        "todo-tree.ripgrep.ripgrep"
+    ],
+    "jupyter.askForKernelRestart": false,
+    "editor.pasteAs.preferences": [
+        "markdown.link",
+        "chat.attach.image",
+        "text.updateLinks.markdown"
+    ]
 }
