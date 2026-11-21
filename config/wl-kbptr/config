@@ -83,9 +83,10 @@ selectable_border_color=#ffc8
 label_font_family=sans-serif
 label_font_family=mono
 
-# Font size for labels.
-# See mode_tile.label_font_size for a detailed description.
-label_font_size=14 100% 100
+# Font size for labels, specified as `<min> <pct>% <max>`.
+# The resulting font size is a percentage of the region height
+# (specified by <pct>), bounded by <min> and <max>.
+label_font_size=14 50% 100
 
 # Characters to use in labels
 label_symbols=abcdefghijklmnopqrstuvwxyz
