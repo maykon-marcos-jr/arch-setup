@@ -23,6 +23,8 @@ hl.config({
         kb_layout = "br, us",
         kb_variant = "abnt2",
         kb_options = "ctrl:nocaps",
+        repeat_delay = 300, -- in milliseconds
+        repeat_rate = 25, -- in milliseconds
 
         -- kb_model =
         -- kb_rules =

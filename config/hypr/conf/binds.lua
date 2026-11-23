@@ -101,10 +101,10 @@ hl.bind(mainMod .. " + SHIFT + Page_up", hl.dsp.window.move({ workspace = "r-1" 
 hl.bind(mainMod .. " + SHIFT + Page_down", hl.dsp.window.move({ workspace = "r+1" }))
 
 -- Set repeatable hl.bind(s for resizing the active window.
-hl.bind(mainMod .. " + SHIFT + ALT + right", hl.dsp.window.resize({ x = "+5", y = "0", relative = true, repeating = true }))
-hl.bind(mainMod .. " + SHIFT + ALT + left", hl.dsp.window.resize({ x = "-5", y = "0", relative = true, repeating = true }))
-hl.bind(mainMod .. " + SHIFT + ALT + up", hl.dsp.window.resize({ x = "0", y = "-5", relative = true, repeating = true }))
-hl.bind(mainMod .. " + SHIFT + ALT + down", hl.dsp.window.resize({ x = "0", y = "+5", relative = true, repeating = true }))
+hl.bind(mainMod .. " + SHIFT + ALT + right", hl.dsp.window.resize({ x = "+5", y = "0", relative = true }), {repeating = true})
+hl.bind(mainMod .. " + SHIFT + ALT + left", hl.dsp.window.resize({ x = "-5", y = "0", relative = true }), {repeating = true})
+hl.bind(mainMod .. " + SHIFT + ALT + down", hl.dsp.window.resize({ x = "0", y = "+5", relative = true }), {repeating = true})
+hl.bind(mainMod .. " + SHIFT + ALT + up", hl.dsp.window.resize({ x = "0", y = "-5", relative = true }), {repeating = true})
 
 hl.bind(mainMod .. "+ F1", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), {locked = true, repeating = true})
 hl.bind(mainMod .. "+ F2", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), {locked = true, repeating = true})
@@ -133,15 +133,38 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), {locked = true
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), {locked = true})
 
 -- Cursor movement
-hl.bind(mainMod .. "+ ALT + down", hl.dsp.exec_cmd("wlrctl pointer move 0 10"), {repeating = true})
-hl.bind(mainMod .. "+ ALT + up", hl.dsp.exec_cmd("wlrctl pointer move 0 -10"), {repeating = true})
-hl.bind(mainMod .. "+ ALT + right", hl.dsp.exec_cmd("wlrctl pointer move 10 0"), {repeating = true})
-hl.bind(mainMod .. "+ ALT + left", hl.dsp.exec_cmd("wlrctl pointer move -10 0"), {repeating = true})
+-- pos=$(hyprctl cursorpos)
+-- x=${pos%,*}
+-- y=${pos#*, }
+-- hyprctl dispatch movecursor "$x" "$((y + 10))"
+local function move_cursor_by(dx, dy)
+    local pos = hl.get_cursor_pos()
+    if not pos then
+        return
+    end
+
+    hl.dispatch(hl.dsp.cursor.move({
+        x = pos.x + dx,
+        y = pos.y + dy,
+    }))
+end
+-- hl.bind(mainMod .. "+ ALT + down", hl.dsp.exec_cmd("wlrctl pointer move 0 10"), {repeating = true})
+-- hl.bind(mainMod .. "+ ALT + up", hl.dsp.exec_cmd("wlrctl pointer move 0 -10"), {repeating = true})
+-- hl.bind(mainMod .. "+ ALT + right", hl.dsp.exec_cmd("wlrctl pointer move 10 0"), {repeating = true})
+-- hl.bind(mainMod .. "+ ALT + left", hl.dsp.exec_cmd("wlrctl pointer move -10 0"), {repeating = true})
+hl.bind(mainMod .. "+ ALT + down", function()  move_cursor_by(0, 10) end, { repeating = true })
+hl.bind(mainMod .. "+ ALT + up", function()  move_cursor_by(0, -10) end, { repeating = true })
+hl.bind(mainMod .. "+ ALT + right", function()  move_cursor_by(10, 0) end, { repeating = true })
+hl.bind(mainMod .. "+ ALT + left", function()  move_cursor_by(-10, 0) end, { repeating = true })
 -- faster movement
-hl.bind(mainMod .. "+ CTRL + down", hl.dsp.exec_cmd("wlrctl pointer move 0 75"), {repeating = true})
-hl.bind(mainMod .. "+ CTRL + up", hl.dsp.exec_cmd("wlrctl pointer move  0 -75"), {repeating = true})
-hl.bind(mainMod .. "+ CTRL + right", hl.dsp.exec_cmd("wlrctl pointer move  75 0"), {repeating = true})
-hl.bind(mainMod .. "+ CTRL + left", hl.dsp.exec_cmd("wlrctl pointer move  -75 0"), {repeating = true})
+-- hl.bind(mainMod .. "+ CTRL + down", hl.dsp.exec_cmd("wlrctl pointer move 0 75"), {repeating = true})
+-- hl.bind(mainMod .. "+ CTRL + up", hl.dsp.exec_cmd("wlrctl pointer move  0 -75"), {repeating = true})
+-- hl.bind(mainMod .. "+ CTRL + right", hl.dsp.exec_cmd("wlrctl pointer move  75 0"), {repeating = true})
+-- hl.bind(mainMod .. "+ CTRL + left", hl.dsp.exec_cmd("wlrctl pointer move  -75 0"), {repeating = true})
+hl.bind(mainMod .. "+ CTRL + down", function()  move_cursor_by(0, 75) end, { repeating = true })
+hl.bind(mainMod .. "+ CTRL + up", function()  move_cursor_by(0, -75) end, { repeating = true })
+hl.bind(mainMod .. "+ CTRL + right", function()  move_cursor_by(75, 0) end, { repeating = true })
+hl.bind(mainMod .. "+ CTRL + left", function()  move_cursor_by(-75, 0) end, { repeating = true })
 
 -- -- Scroll up and down
 hl.bind(mainMod .. "+ ALT + w", hl.dsp.exec_cmd("wlrctl pointer scroll -10 0"), {repeating = true})
