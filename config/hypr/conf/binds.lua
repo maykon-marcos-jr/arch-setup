@@ -167,12 +167,12 @@ hl.bind(mainMod .. "+ CTRL + right", function()  move_cursor_by(75, 0) end, { re
 hl.bind(mainMod .. "+ CTRL + left", function()  move_cursor_by(-75, 0) end, { repeating = true })
 
 -- -- Scroll up and down
-hl.bind(mainMod .. "+ ALT + w", hl.dsp.exec_cmd("wlrctl pointer scroll -10 0"), {repeating = true})
-hl.bind(mainMod .. "+ ALT + s", hl.dsp.exec_cmd("wlrctl pointer scroll 10 0"), {repeating = true})
+hl.bind(mainMod .. "+ Page_up", hl.dsp.exec_cmd("wlrctl pointer scroll -10 0"), {repeating = true})
+hl.bind(mainMod .. "+ Page_down", hl.dsp.exec_cmd("wlrctl pointer scroll 10 0"), {repeating = true})
 
 -- -- Scroll left and right
-hl.bind(mainMod .. "+ ALT + a", hl.dsp.exec_cmd("wlrctl pointer scroll 0 10"), {repeating = true})
-hl.bind(mainMod .. "+ ALT + d", hl.dsp.exec_cmd("wlrctl pointer scroll 0 -10"), {repeating = true})
+hl.bind(mainMod .. "+ SHIFT + w", hl.dsp.exec_cmd("wlrctl pointer scroll 0 -10"), {repeating = true})
+hl.bind(mainMod .. "+ SHIFT + s", hl.dsp.exec_cmd("wlrctl pointer scroll 0 10"), {repeating = true})
 
 -- Left button
 hl.bind(mainMod .. "+ Return", hl.dsp.exec_cmd("wlrctl pointer click left"))
