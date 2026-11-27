@@ -59,15 +59,14 @@ hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("code"))
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr -o modes=tile,split &"))
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr &"))
 hl.bind("ALT + W", hl.dsp.exec_cmd("whatsit"))
--- Toggle fullscreen
-hl.bind(mainMod .. " + F11", hl.dsp.window.fullscreen({
-    mode = "fullscreen",
-    action = "toggle"
-}))
-hl.bind(mainMod .. " + HOME", hl.dsp.window.fullscreen({
-    mode = "fullscreen",
-    action = "toggle"
-}))
+-- -- Toggle fullscreen
+-- hl.bind(mainMod .. " + F11", hl.dsp.window.fullscreen({
+--     mode = "fullscreen",
+--     action = "toggle"
+-- }))
+-- Toggle waybar
+hl.bind(mainMod .. " + F11", hl.dsp.exec_cmd("pkill -HUP -f waybar_peek"))
+hl.bind(mainMod .. " + HOME", hl.dsp.exec_cmd("pkill -HUP -f waybar_peek"))
 
 
 -- adding alt+tab functionality

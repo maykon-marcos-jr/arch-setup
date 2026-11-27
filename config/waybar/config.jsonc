@@ -3,6 +3,10 @@
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 40, // Waybar height (to be removed for auto height)
+    "start_hidden": true,
+    "ipc": true,
+    "on-sigusr1": "hide",
+    "on-sigusr2": "show",
     "spacing": 4, // Gaps between modules (4px)
     "output": ["*"],
     "mode": "dock",
@@ -68,6 +72,7 @@
         "on-click": "activate",
         "on-click-middle": "close",
         "all-outputs": true,
+        "active-first": true,
         "rewrite": {
             "(.*) — Mozilla Firefox": "  $1",
             "(.*@.*~)": ">  [$1]",
@@ -156,7 +161,7 @@
     },
     "tray": {
         "icon-size": 20,
-        "spacing": 15,
+        "spacing": 10,
         "show-passive-items": true,
         "reverse-direction": true
     },

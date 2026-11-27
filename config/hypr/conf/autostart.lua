@@ -23,6 +23,7 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("systemctl --user start rclone-sync.service")
     -- panels and bars
     hl.exec_cmd("waybar")
+    hl.exec_cmd("~/.config/waybar/scripts/waybar_peek.py &")
     -- vpn
     -- hl.exec_cmd("protonvpn connect")
     -- Or execute your favorite apps at launch like this:
