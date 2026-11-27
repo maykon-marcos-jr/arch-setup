@@ -24,15 +24,4 @@ hl.on("hyprland.start", function ()
     -- panels and bars
     hl.exec_cmd("waybar")
     hl.exec_cmd("~/.config/waybar/scripts/waybar_peek.py &")
-    -- vpn
-    -- hl.exec_cmd("protonvpn connect")
-    -- Or execute your favorite apps at launch like this:
-    hl.exec_cmd("gmail-tray", {workspace = "1"})
-    -- hl.exec_cmd(browser, {workspace = "1"})
-    hl.exec_cmd("gtk-launch notion", {workspace = "1"})
-    hl.exec_cmd("betterbird")
-    -- hl.exec_cmd("whatsit")
-    hl.exec_cmd("zapfast")
-    hl.exec_cmd("code", {workspace = "1"})
-    hl.exec_cmd("obsidian", {workspace = "2"})
 end)
