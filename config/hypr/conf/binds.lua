@@ -58,7 +58,8 @@ hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("code"))
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr -o modes=tile,split &"))
 hl.bind(mainMod .. " + Z", hl.dsp.exec_cmd("pkill wl-kbptr || wl-kbptr &"))
-hl.bind("ALT + W", hl.dsp.exec_cmd("whatsit"))
+-- hl.bind("ALT + W", hl.dsp.exec_cmd("whatsit"))
+hl.bind("ALT + W", hl.dsp.exec_cmd("zapfast"))
 -- -- Toggle fullscreen
 -- hl.bind(mainMod .. " + F11", hl.dsp.window.fullscreen({
 --     mode = "fullscreen",
