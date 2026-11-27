@@ -65,7 +65,7 @@ user_pref("browser.search.suggest.enabled.private", true);
 user_pref("browser.tabs.groups.smart.userEnabled", false);
 user_pref("browser.theme.toolbar-theme", 0);
 user_pref("browser.toolbarbuttons.introduced.sidebar-button", true);
-user_pref("browser.toolbars.bookmarks.visibility", "always");
+user_pref("browser.toolbars.bookmarks.visibility", "newtab");
 user_pref("browser.translations.neverTranslateLanguages", "pt");
 user_pref("browser.uiCustomization.horizontalTabstrip", "[\"tabbrowser-tabs\",\"new-tab-button\"]");
 user_pref("browser.uiCustomization.navBarWhenVerticalTabs", "[\"sidebar-button\",\"back-button\",\"forward-button\",\"stop-reload-button\",\"home-button\",\"customizableui-special-spring1\",\"vertical-spacer\",\"urlbar-container\",\"customizableui-special-spring2\",\"downloads-button\",\"fxa-toolbar-menu-button\",\"unified-extensions-button\",\"sponsorblocker_ajay_app-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action\"]");
@@ -238,14 +238,18 @@ user_pref("services.sync.prefs.sync-seen.privacy.userContext.enabled", true);
 user_pref("services.sync.prefs.sync-seen.signon.generation.enabled", true);
 user_pref("services.sync.prefs.sync-seen.signon.rememberSignons", true);
 user_pref("services.sync.prefs.sync-seen.spellchecker.dictionary", true);
+user_pref("sidebar.animation.expand-on-hover.delay-duration-ms", 0);
 user_pref("sidebar.main.tools", "aichat,syncedtabs,history,bookmarks,passwords");
 user_pref("sidebar.new-sidebar.has-used", true);
 user_pref("sidebar.revamp", true);
 user_pref("sidebar.verticalTabs", true);
 user_pref("sidebar.verticalTabs.dragToPinPromo.dismissed", true);
+user_pref("sidebar.visibility", "expand-on-hover");
 user_pref("signon.generation.enabled", false);
 user_pref("signon.rememberSignons", true);
 user_pref("spellchecker.dictionary", "en-US,pt-BR");
+// allows for customizing
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
 user_pref("widget.wayland.vsync.enabled", true);
 // DMABUF = modern Linux method to share GPU buffers between apps.

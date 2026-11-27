@@ -52,8 +52,10 @@ ln -sfn ~/arch-setup/config/whatsapp/whatsit.ini ~/.config/whatsit/whatsit.ini
 echo "setting up Firefox configuration for multiple profiles"
 mkdir -p ~/.mozilla/firefox/Main/
 ln -sfn  ~/arch-setup/config/firefox/user.js ~/.mozilla/firefox/Main/user.js
+ln -sfn  ~/arch-setup/config/firefox/chrome ~/.mozilla/firefox/Main/chrome
 mkdir -p ~/.mozilla/firefox/Hobbies/
 ln -sfn  ~/arch-setup/config/firefox/user.js ~/.mozilla/firefox/Hobbies/user.js
+ln -sfn  ~/arch-setup/config/firefox/chrome ~/.mozilla/firefox/Hobbies/chrome
 
 echo "setting up Audacious configuration"
 mkdir -p ~/.config/audacious

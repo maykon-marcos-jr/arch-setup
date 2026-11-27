@@ -1,0 +1,61 @@
+/*
+    https://gist.github.com/grundmanise/167eb105d81417340703073e344b60c9
+    This file is part of the userChrome.css customization for Firefox.
+    It contains styles that enable the sidebar to expand on hover and adjust the layout accordingly.
+*/
+:root[sidebar-expand-on-hover] {
+
+    /* Prevent sidebar from participating in page size + hide it */
+      #sidebar-container {
+        position: absolute !important;
+        view-transition-name: none !important;
+      }
+
+    /* Now, when it's hidden, prevent the page from reacting (resizing) to its visibility change */
+      #tabbrowser-tabbox {
+        margin: 0px !important;
+      }
+
+
+    /* Make the sidebar hover surface narrower */
+      box:not([sidebar-launcher-expanded]) sidebar-main {
+        width: 50px !important;
+      }
+
+    /* Slide out animation for the sidebar */
+      #sidebar-container,
+      #vertical-tabs {
+        transform: translateX(-100%);
+        transition:  transform var(--sidebar-expand-on-hover-duration);
+      }
+
+    /* Offset mouse hover target to keep it responsive to hover */
+      sidebar-main {
+        transform: translateX(100%);
+        transition:  transform var(--sidebar-expand-on-hover-duration);
+      }
+      #sidebar-container[sidebar-launcher-expanded] {
+        transform: translateX(0);
+        & sidebar-main, #vertical-tabs {
+          transform: translateX(0);
+        }
+      }
+
+      /* Remove unnecessary border and rounding on page container */
+      .browserContainer {
+        border: 0 !important;
+        border-radius: 0 !important;
+      }
+
+    /* Workaround for the buttons wrapper to be aware of the hoverable sidebar being on or off */
+      --buttons-transition: var(--sidebar-expand-on-hover-duration);
+    }
+
+    /* Make menu buttons appear with a transition synced to the sidebar */
+    .buttons-wrapper {
+    /* This button class can’t detect the sidebar’s expand-on-hover state from the userChrome.css, so we need a workaround using variables to make it aware and functional */
+      transition:  transform var(--buttons-transition, 0);
+    }
+    .buttons-wrapper[overflowing] {
+      transform: translateX(-100%);
+    }
