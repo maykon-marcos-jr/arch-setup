@@ -90,5 +90,17 @@
         "markdown.link",
         "chat.attach.image",
         "text.updateLinks.markdown"
-    ]
+    ],
+    "window.titleBarStyle": "native",
+    "update.titleBar": false,
+    "chat.agentsWindowTitleBarIcons.enabled": false,
+    "chat.titleBar.openInAgentsWindow.enabled": false,
+    "chat.titleBar.signIn.enabled": false,
+    "workbench.browser.showInTitleBar": false,
+    "workbench.notifications.showInTitleBar": false,
+    "gitHistory.showEditorTitleMenuBarIcons": false,
+    "window.commandCenter": false,
+    "workbench.activityBar.autoHide": true,
+    "window.customTitleBarVisibility": "never",
+    "workbench.statusBar.visible": false
 }
